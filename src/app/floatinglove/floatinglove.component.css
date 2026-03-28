@@ -1,6 +1,6 @@
 :host {
   display: block;
-  position: fixed; /* Prevents layout shifts on mobile browsers */
+  position: fixed; /* Fixes "jumping" UI on mobile browsers */
   top: 0;
   left: 0;
   width: 100vw;
@@ -19,6 +19,8 @@
 
 canvas {
   display: block;
+  width: 100%;
+  height: 100%;
   outline: none;
-  touch-action: none; /* Disables browser-level scrolling/zooming gestures on the canvas */
+  touch-action: none; /* Prevents unwanted scrolling on mobile */
 }

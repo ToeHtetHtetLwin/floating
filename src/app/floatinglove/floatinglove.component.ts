@@ -41,6 +41,7 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
   private config = { count: 250, neon: '#ff1493', text: '#ffffff' };
 
   ngAfterViewInit(): void {
+    // Route မှာ ID မပါရင် default အနေနဲ့ C001 ကို သုံးပါမယ်
     const customerId = this.route.snapshot.paramMap.get('id') || 'C001';
     this.loadCustomerData(customerId);
   }
@@ -75,7 +76,6 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
   private initThree(): void {
     this.scene = new THREE.Scene();
     
-    // Responsive FOV: Wider on mobile to see more content
     const isMobile = window.innerWidth < 768;
     const fov = isMobile ? 85 : 75;
 
@@ -138,10 +138,8 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
     if (allTextures.length === 0) return;
 
     const isMobile = window.innerWidth < 768;
-    // Elements are 50% smaller on mobile
-    const responsiveScale = isMobile ? 0.5 : 1.0; 
-    // Constrain spread so items don't float too far left/right on narrow screens
-    const spreadX = isMobile ? 45 : 100;
+    const responsiveScale = isMobile ? 0.65 : 1.0; 
+    const spreadX = isMobile ? 55 : 100;
 
     for (let i = 0; i < count; i++) {
       const texIndex = i % allTextures.length;
@@ -157,7 +155,7 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
         transparent: true,
         side: THREE.DoubleSide,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0, // Fade-in အတွက် 0 ကနေ စပါမယ်
       });
 
       const mesh = new THREE.Mesh(geometry, material);
@@ -172,6 +170,15 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
       mesh.scale.set(randomS, randomS, 1);
       this.group.add(mesh);
 
+      // 1. Fade-in Effect: ပုံတွေ တစ်ခုချင်းစီ တဖြည်းဖြည်းချင်း ပေါ်လာစေဖို့
+      gsap.to(material, {
+        opacity: 0.9,
+        duration: 2,
+        delay: Math.random() * 2, // ပုံတွေ အကုန်ပြိုင်တူမပေါ်ဘဲ တစ်လှည့်စီ ပေါ်လာအောင်
+        ease: 'power2.out'
+      });
+
+      // 2. Floating Animation: အပေါ်ကို ဖြည်းဖြည်းချင်း တက်သွားစေဖို့
       gsap.to(mesh.position, {
         y: 80,
         duration: 25 + Math.random() * 30,
@@ -216,7 +223,7 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
     const height = window.innerHeight;
 
     this.camera.aspect = width / height;
-    this.camera.fov = width < 768 ? 85 : 75; // Adjust zoom on resize
+    this.camera.fov = width < 768 ? 85 : 75; 
     this.camera.updateProjectionMatrix();
     
     this.renderer.setSize(width, height);

@@ -1,30 +1,34 @@
 import { Routes } from '@angular/router';
 import { FloatingloveComponent } from './floatinglove/floatinglove.component';
+import { SorryComponent } from './sorry/sorry.component';
+// Import your Home/Landing component here if you have one
+// import { HomeComponent } from './home/home.component'; 
 
 export const routes: Routes = [
   /** * 1. The Dynamic Route
-   * ':id' acts as a placeholder for your Customer IDs (C001, C002, etc.)
+   * This stays the same. To see data, you must go to /love/C001
    */
   { 
     path: 'love/:id', 
     component: FloatingloveComponent 
   },
 
-  /** * 2. Default Fallback
-   * If someone visits just 'yourdomain.com', 
-   * they will be redirected to the first customer (C001).
+  /** * 2. The Root Path (localhost:4200)
+   * We remove 'redirectTo'. 
+   * Now, visiting localhost:4200 will NOT change the URL.
+   * You can point this to a Landing Page component instead.
    */
   { 
     path: '', 
-    redirectTo: 'love/C001', 
+    component: SorryComponent, // Or a separate HomeComponent
     pathMatch: 'full' 
   },
 
-  /** * 3. Wildcard Route (Optional)
-   * Handles 404 - Page Not Found by sending users back to the main view.
+  /** * 3. Wildcard Route
+   * Keeps the app stable if a user types a wrong URL.
    */
   { 
     path: '**', 
-    redirectTo: 'love/C001' 
+    redirectTo: '' 
   }
 ];
