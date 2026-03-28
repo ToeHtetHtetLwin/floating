@@ -1,0 +1,75 @@
+/* Container to center everything on screen */
+.sorry-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1a1a1a; /* Dark background */
+  font-family: 'Pyidaungsu', sans-serif;
+  padding: 20px;
+}
+
+/* The white card */
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+}
+
+.gif-container img {
+  width: 150px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 1.2rem;
+  color: #d32f2f; /* Warning Red */
+  line-height: 1.6;
+}
+
+.highlight {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.warning-text {
+  color: #666;
+  font-style: italic;
+  margin: 15px 0;
+}
+
+/* The box where the joke appears */
+.joke-box {
+  background: #f8f9fa;
+  border-left: 5px solid #ff9800;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+.joke-content {
+  color: #333 !important; /* Forces text to be visible */
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.retry-btn {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.retry-btn:hover {
+  background-color: #555;
+}
