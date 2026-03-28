@@ -1,29 +1,70 @@
 {
   "customers": {
     "C001": {
-      "images": ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg"],
-      "messages": ["I Love You ❤️", "Forever Together 💍", "Miss You 🥰", "✨ You are My World ✨","Happy Anniversary❤️","My Sunshine❤️"],
-      "settings": { "elementCount": 250, "neonColor": "#ff1493", "textColor": "#ffffff" }
+      "images": ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "5.jpg", "3.jpg"],
+      "messages": [
+        "I Love You ❤️",
+        "Forever Together 💍",
+        "Miss You 🥰",
+        "✨ You are My World ✨",
+        "Happy Anniversary❤️",
+        "My Sunshine❤️"
+      ],
+      "settings": {
+        "elementCount": 250,
+        "neonColor": "#ff1493",
+        "textColor": "#ffffff"
+      }
     },
     "C002": {
-      "images": ["https://picsum.photos/id/1027/400/600"],
-      "messages": ["Happy Birthday! 🎂", "Celebrate Life 🎉", "Keep Shining 🌟"],
-      "settings": { "elementCount": 150, "neonColor": "#00ffcc", "textColor": "#ffffff" }
+      "images": [
+        "k1.jpg",
+        "k2.jpg",
+        "k3.jpg",
+        "k4.jpg",
+        "k5.jpg",
+        "k5.jpg",
+        "k3.jpg"
+      ],
+      "messages": [
+        "I Love You ❤️",
+        "Forever Together 💍",
+        "Keep Shining 🌟",
+        "✨ You are My World ✨",
+        "Miss You 🥰"
+      ],
+      "settings": {
+        "elementCount": 250,
+        "neonColor": "#ff1493",
+        "textColor": "#ffffff"
+      }
     },
     "C003": {
       "images": ["https://picsum.photos/id/1062/400/600"],
       "messages": ["Peace & Love ✌️", "Stay Wild 🌿", "Nature Soul 🍃"],
-      "settings": { "elementCount": 200, "neonColor": "#32cd32", "textColor": "#f0fff0" }
+      "settings": {
+        "elementCount": 200,
+        "neonColor": "#32cd32",
+        "textColor": "#f0fff0"
+      }
     },
     "C004": {
       "images": ["https://picsum.photos/id/237/400/600"],
       "messages": ["Best Friends 🐾", "Always Loyal", "Bark Love 🐶"],
-      "settings": { "elementCount": 180, "neonColor": "#ffa500", "textColor": "#ffffff" }
+      "settings": {
+        "elementCount": 180,
+        "neonColor": "#ffa500",
+        "textColor": "#ffffff"
+      }
     },
     "C005": {
       "images": ["https://picsum.photos/id/1080/400/600"],
       "messages": ["Deep Space 🚀", "Into the Void 🌌", "Star Dust ✨"],
-      "settings": { "elementCount": 300, "neonColor": "#8a2be2", "textColor": "#e6e6fa" }
+      "settings": {
+        "elementCount": 300,
+        "neonColor": "#8a2be2",
+        "textColor": "#e6e6fa"
+      }
     }
   }
 }
