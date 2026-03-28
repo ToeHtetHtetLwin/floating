@@ -25,11 +25,9 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 export class FloatingloveComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas') canvasRef!: ElementRef<HTMLCanvasElement>;
 
-  // Services
   private http = inject(HttpClient);
   private route = inject(ActivatedRoute);
 
-  // Three.js Core
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
@@ -38,13 +36,11 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
   private textureLoader = new THREE.TextureLoader();
   private group = new THREE.Group();
 
-  // Dynamic Data Holders
   private imageUrls: string[] = [];
   private textContents: string[] = [];
   private config = { count: 250, neon: '#ff1493', text: '#ffffff' };
 
   ngAfterViewInit(): void {
-    // 1. Get Customer ID from URL (e.g., /love/:id) or default to C001
     const customerId = this.route.snapshot.paramMap.get('id') || 'C001';
     this.loadCustomerData(customerId);
   }
@@ -53,16 +49,11 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
     this.http.get<any>('/customers.json').subscribe({
       next: (res) => {
         const customerData = res.customers[id];
-
         if (!customerData) {
-          console.error(
-            `Customer ${id} not found in JSON. Falling back to C001.`,
-          );
           if (id !== 'C001') this.loadCustomerData('C001');
           return;
         }
 
-        // Map JSON data to local variables
         this.imageUrls = customerData.images;
         this.textContents = customerData.messages;
         this.config = {
@@ -71,7 +62,6 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
           text: customerData.settings.textColor,
         };
 
-        // Initialize Scene
         this.initThree();
         this.createGalaxyBackground();
         this.createMixedElements(this.config.count);
@@ -84,8 +74,13 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
 
   private initThree(): void {
     this.scene = new THREE.Scene();
+    
+    // Responsive FOV: Wider on mobile to see more content
+    const isMobile = window.innerWidth < 768;
+    const fov = isMobile ? 85 : 75;
+
     this.camera = new THREE.PerspectiveCamera(
-      75,
+      fov,
       window.innerWidth / window.innerHeight,
       0.1,
       1000,
@@ -107,9 +102,7 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
     const renderScene = new RenderPass(this.scene, this.camera);
     const bloomPass = new UnrealBloomPass(
       new THREE.Vector2(window.innerWidth, window.innerHeight),
-      0.4, // Bloom strength
-      0.3, // Radius
-      0.85, // Threshold
+      0.4, 0.3, 0.85
     );
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(renderScene);
@@ -126,13 +119,9 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
     context.font = 'bold 80px Arial';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-
-    // Neon Stroke using dynamic color from JSON
     context.strokeStyle = this.config.neon;
     context.lineWidth = 8;
     context.strokeText(text, canvas.width / 2, canvas.height / 2);
-
-    // Main Text color from JSON
     context.fillStyle = this.config.text;
     context.fillText(text, canvas.width / 2, canvas.height / 2);
 
@@ -142,18 +131,17 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
   }
 
   private createMixedElements(count: number): void {
-    const imageTextures = this.imageUrls.map((url) =>
-      this.textureLoader.load(url),
-    );
-    const textTextures = this.textContents.map((txt) =>
-      this.createTextTexture(txt),
-    );
+    const imageTextures = this.imageUrls.map((url) => this.textureLoader.load(url));
+    const textTextures = this.textContents.map((txt) => this.createTextTexture(txt));
     const allTextures = [...imageTextures, ...textTextures];
 
     if (allTextures.length === 0) return;
 
     const isMobile = window.innerWidth < 768;
-    const baseScale = isMobile ? 2.5 : 1.5;
+    // Elements are 50% smaller on mobile
+    const responsiveScale = isMobile ? 0.5 : 1.0; 
+    // Constrain spread so items don't float too far left/right on narrow screens
+    const spreadX = isMobile ? 45 : 100;
 
     for (let i = 0; i < count; i++) {
       const texIndex = i % allTextures.length;
@@ -174,18 +162,16 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
 
       const mesh = new THREE.Mesh(geometry, material);
 
-      // Random position spreads
       mesh.position.set(
-        (Math.random() - 0.5) * 100,
+        (Math.random() - 0.5) * spreadX,
         (Math.random() - 0.5) * 150,
         (Math.random() - 0.5) * 30,
       );
 
-      const randomS = (0.8 + Math.random() * 1.5) * baseScale;
+      const randomS = (0.8 + Math.random() * 1.5) * responsiveScale;
       mesh.scale.set(randomS, randomS, 1);
       this.group.add(mesh);
 
-      // GSAP Floating Animation
       gsap.to(mesh.position, {
         y: 80,
         duration: 25 + Math.random() * 30,
@@ -205,10 +191,7 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
     for (let i = 0; i < 1000 * 3; i++) {
       positions[i] = (Math.random() - 0.5) * 500;
     }
-    starGeometry.setAttribute(
-      'position',
-      new THREE.BufferAttribute(positions, 3),
-    );
+    starGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     const starMaterial = new THREE.PointsMaterial({
       size: 0.15,
       color: 0xffffff,
@@ -221,7 +204,7 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
   private animate(): void {
     this.frameId = requestAnimationFrame(() => this.animate());
     if (this.composer) {
-      this.group.rotation.y += 0.001; // Subtle scene rotation
+      this.group.rotation.y += 0.001;
       this.composer.render();
     }
   }
@@ -233,13 +216,11 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
     const height = window.innerHeight;
 
     this.camera.aspect = width / height;
+    this.camera.fov = width < 768 ? 85 : 75; // Adjust zoom on resize
     this.camera.updateProjectionMatrix();
+    
     this.renderer.setSize(width, height);
     this.composer.setSize(width, height);
-
-    const isMobile = width < 768;
-    const newScale = isMobile ? 1.8 : 1.0;
-    this.group.scale.set(newScale, newScale, newScale);
   }
 
   ngOnDestroy(): void {
