@@ -13,7 +13,8 @@
       "settings": {
         "elementCount": 250,
         "neonColor": "#ff1493",
-        "textColor": "#ffffff"
+        "textColor": "#ffffff",
+        "musicUrl": "tothebone.mp3"
       }
     },
     "C002": {
@@ -36,7 +37,8 @@
       "settings": {
         "elementCount": 250,
         "neonColor": "#ff1493",
-        "textColor": "#ffffff"
+        "textColor": "#ffffff",
+        "musicUrl": ""
       }
     },
     "C003": {

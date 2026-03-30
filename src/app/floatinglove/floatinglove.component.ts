@@ -36,12 +36,15 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
   private textureLoader = new THREE.TextureLoader();
   private group = new THREE.Group();
 
+  // Audio Logic
+  private audio = new Audio();
+  private isMusicStarted = false;
+
   private imageUrls: string[] = [];
   private textContents: string[] = [];
-  private config = { count: 250, neon: '#ff1493', text: '#ffffff' };
+  private config = { count: 250, neon: '#ff1493', text: '#ffffff', musicUrl: '' };
 
   ngAfterViewInit(): void {
-    // Route မှာ ID မပါရင် default အနေနဲ့ C001 ကို သုံးပါမယ်
     const customerId = this.route.snapshot.paramMap.get('id') || 'C001';
     this.loadCustomerData(customerId);
   }
@@ -61,8 +64,10 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
           count: customerData.settings.elementCount,
           neon: customerData.settings.neonColor,
           text: customerData.settings.textColor,
+          musicUrl: customerData.settings.musicUrl || '' // JSON ထဲမှ music url ယူခြင်း
         };
 
+        this.setupAudio(this.config.musicUrl);
         this.initThree();
         this.createGalaxyBackground();
         this.createMixedElements(this.config.count);
@@ -73,18 +78,34 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  private setupAudio(url: string): void {
+    if (!url) return;
+    this.audio.src = url;
+    this.audio.load();
+    this.audio.loop = true;
+    this.audio.volume = 0.5;
+  }
+
+  // Browser Autoplay Policy အရ user screen ကို နှိပ်မှ music စဖွင့်ပေးရန်
+  @HostListener('document:click', ['$event'])
+  @HostListener('document:touchstart', ['$event'])
+  handleUserInteraction(): void {
+    if (!this.isMusicStarted && this.config.musicUrl) {
+      this.audio.play()
+        .then(() => {
+          this.isMusicStarted = true;
+          console.log("Music started playing...");
+        })
+        .catch(err => console.log("Playback failed:", err));
+    }
+  }
+
   private initThree(): void {
     this.scene = new THREE.Scene();
-    
     const isMobile = window.innerWidth < 768;
     const fov = isMobile ? 85 : 75;
 
-    this.camera = new THREE.PerspectiveCamera(
-      fov,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000,
-    );
+    this.camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 0.1, 1000);
     this.camera.position.z = 35;
 
     this.renderer = new THREE.WebGLRenderer({
@@ -155,11 +176,10 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
         transparent: true,
         side: THREE.DoubleSide,
         depthWrite: false,
-        opacity: 0, // Fade-in အတွက် 0 ကနေ စပါမယ်
+        opacity: 0,
       });
 
       const mesh = new THREE.Mesh(geometry, material);
-
       mesh.position.set(
         (Math.random() - 0.5) * spreadX,
         (Math.random() - 0.5) * 150,
@@ -170,15 +190,13 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
       mesh.scale.set(randomS, randomS, 1);
       this.group.add(mesh);
 
-      // 1. Fade-in Effect: ပုံတွေ တစ်ခုချင်းစီ တဖြည်းဖြည်းချင်း ပေါ်လာစေဖို့
       gsap.to(material, {
         opacity: 0.9,
         duration: 2,
-        delay: Math.random() * 2, // ပုံတွေ အကုန်ပြိုင်တူမပေါ်ဘဲ တစ်လှည့်စီ ပေါ်လာအောင်
+        delay: Math.random() * 2,
         ease: 'power2.out'
       });
 
-      // 2. Floating Animation: အပေါ်ကို ဖြည်းဖြည်းချင်း တက်သွားစေဖို့
       gsap.to(mesh.position, {
         y: 80,
         duration: 25 + Math.random() * 30,
@@ -232,6 +250,14 @@ export class FloatingloveComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.frameId) cancelAnimationFrame(this.frameId);
+    
+    // Audio cleanup
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.src = "";
+      this.audio.load();
+    }
+
     if (this.renderer) {
       this.renderer.dispose();
       this.group.clear();
