@@ -42,12 +42,13 @@
       }
     },
     "C003": {
-      "images": ["https://picsum.photos/id/1062/400/600"],
-      "messages": ["Peace & Love ✌️", "Stay Wild 🌿", "Nature Soul 🍃"],
+      "images": ["t1.jpg","t2.jpg","t3.jpg","t4.jpg","t5.jpg","t6.jpg","t7.jpg"],
+      "messages": ["သဲရေ❤️", "သဲကို ကိုကိုအရမ်းချစ်တယ်  ❤️", "သဲပြန်လာမဲ့ နေ့ကို❤️","ကိုကိုစောင့်နေမယ် ❤️","စိတ်ဆိုးပြေပါတော့❤️","အရမ်းချစ်တယ်လူဆိုးမလေးရေ❤️","I Love You ❤️","I Miss U❤️"],
       "settings": {
         "elementCount": 200,
         "neonColor": "#32cd32",
-        "textColor": "#f0fff0"
+        "textColor": "#f0fff0",
+         "musicUrl": "t.mp3"
       }
     },
     "C004": {
