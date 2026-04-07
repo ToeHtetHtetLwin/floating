@@ -76,13 +76,37 @@
       }
     },
     "C004": {
-      "images": ["d1.jpg", "d2.jpg", "d3.jpg", "d4.jpg", "d5.jpg", "d6.jpg","d1.jpg", "d2.jpg", "d3.jpg", "d4.jpg", "d5.jpg", "d6.jpg","d4.jpg", "d5.jpg", "d6.jpg"],
+      "images": [
+        "d1.jpg",
+        "d2.jpg",
+        "d3.jpg",
+        "d4.jpg",
+        "d5.jpg",
+        "d6.jpg",
+        "d1.jpg",
+        "d2.jpg",
+        "d3.jpg",
+        "d4.jpg",
+        "d5.jpg",
+        "d6.jpg",
+        "d4.jpg",
+        "d5.jpg",
+        "d6.jpg"
+      ],
       "messages": [
         "Happy birthday 🎂💕",
         "Pretty birthday girl🫶🏻",
         "Wish u all the best💕",
         "Be happy always ❤️",
-        "Miss you😓"
+        "Miss you😓",
+        "Happy birthday 🎂💕",
+        "Pretty birthday girl🫶🏻",
+        "Wish u all the best💕",
+        "Be happy always ❤️",
+        "Miss you😓",
+        "Happy birthday 🎂💕",
+        "Pretty birthday girl🫶🏻",
+        "Wish u all the best💕"
       ],
       "settings": {
         "elementCount": 180,
