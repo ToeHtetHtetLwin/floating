@@ -117,12 +117,13 @@
     },
     "C005": {
       "images": ["s1.jpg","s2.jpg","s3.jpg","s4.jpg","s5.jpg","s1.jpg","s2.jpg","s3.jpg","s4.jpg","s5.jpg","s1.jpg","s2.jpg","s3.jpg","s4.jpg","s5.jpg","s1.jpg","s2.jpg","s3.jpg","s4.jpg","s5.jpg"],
-      "messages": ["I love you more than my life❤️ ", "I miss you every time🫶🏻 ", " I wish always be ur side❤️","U are my sunshine forever❤️","U are my last one ","I love you more than my life ❤️", "I miss you every time❤️ ", " I wish always be ur side","U are my sunshine forever","U are my last one ","❤️"],
+      "messages": ["I love you more than my life❤️ ", "I miss you every time🫶🏻 ", " I wish always be ur side❤️","U are my sunshine forever❤️","U are my last one ","I love you more than my life ❤️", "I miss you every time❤️ ", " I wish always be ur side","U are my sunshine forever","U are my last one ","❤️","❤️"],
       "settings": {
         "elementCount": 300,
          "musicUrl": "reason.mp3",
-        "neonColor": "#8a2be2",
-        "textColor": "#e6e6fa"
+       "neonColor": "#ff1493",
+        "textColor": "#ffffff"
+       
       }
     }
   }
