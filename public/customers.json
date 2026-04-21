@@ -1,7 +1,15 @@
 {
   "customers": {
     "C001": {
-      "images": ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "5.jpg", "3.jpg"],
+      "images": [
+        "1.jpg",
+        "2.jpg",
+        "3.jpg",
+        "4.jpg",
+        "5.jpg",
+        "5.jpg",
+        "3.jpg"
+      ],
       "messages": [
         "I Love You ❤️",
         "Forever Together 💍",
@@ -116,14 +124,117 @@
       }
     },
     "C005": {
-      "images": ["s1.jpg","s2.jpg","s3.jpg","s4.jpg","s5.jpg","s1.jpg","s2.jpg","s3.jpg","s4.jpg","s5.jpg","s1.jpg","s2.jpg","s3.jpg","s4.jpg","s5.jpg","s1.jpg","s2.jpg","s3.jpg","s4.jpg","s5.jpg"],
-      "messages": ["I love you more than my life❤️ ", "I miss you every time🫶🏻 ", " I wish always be ur side❤️","U are my sunshine forever❤️","U are my last one ","I love you more than my life ❤️", "I miss you every time❤️ ", " I wish always be ur side","U are my sunshine forever","U are my last one ","❤️","❤️"],
+      "images": [
+        "s1.jpg",
+        "s2.jpg",
+        "s3.jpg",
+        "s4.jpg",
+        "s5.jpg",
+        "s1.jpg",
+        "s2.jpg",
+        "s3.jpg",
+        "s4.jpg",
+        "s5.jpg",
+        "s1.jpg",
+        "s2.jpg",
+        "s3.jpg",
+        "s4.jpg",
+        "s5.jpg",
+        "s1.jpg",
+        "s2.jpg",
+        "s3.jpg",
+        "s4.jpg",
+        "s5.jpg"
+      ],
+      "messages": [
+        "I love you more than my life❤️ ",
+        "I miss you every time🫶🏻 ",
+        " I wish always be ur side❤️",
+        "U are my sunshine forever❤️",
+        "U are my last one ",
+        "I love you more than my life ❤️",
+        "I miss you every time❤️ ",
+        " I wish always be ur side",
+        "U are my sunshine forever",
+        "U are my last one ",
+        "❤️",
+        "❤️"
+      ],
       "settings": {
         "elementCount": 300,
-         "musicUrl": "reason.mp3",
-       "neonColor": "#ff1493",
+        "musicUrl": "reason.mp3",
+        "neonColor": "#ff1493",
         "textColor": "#ffffff"
-       
+      }
+    },
+    "C006": {
+      "images": [
+        "ta1.jpg",
+        "ta2.jpg",
+        "ta3.jpg",
+        "ta4.jpg",
+        "ta1.jpg",
+        "ta2.jpg",
+        "ta3.jpg",
+        "ta4.jpg",
+        "ta1.jpg",
+        "ta2.jpg",
+        "ta3.jpg",
+        "ta4.jpg",
+        "ta1.jpg",
+        "ta2.jpg",
+        "ta3.jpg",
+        "ta4.jpg",
+        "ta1.jpg",
+        "ta2.jpg",
+        "ta3.jpg",
+        "ta4.jpg",
+         "ta2.jpg",
+        "ta3.jpg",
+        "ta4.jpg",
+        "ta1.jpg",
+        "ta2.jpg",
+        "ta3.jpg",
+        "ta4.jpg"
+      ],
+      "messages": [
+        "Happy birthday 🎂",
+        "Shwe Yati Aung🎂",
+        "Hope it is a special day",
+        "HBD to my favorite human!",
+        " Let’s celebrate you today!",
+        "Happy Day🌸",
+        "🌼",
+        "Be healthy always",
+        "🌻",
+        "🌹",
+        "Happy birthday 🎂",
+        "Shwe Yati Aung🎂",
+        "Hope it is a special day",
+        "HBD to my favorite human!",
+        " Let’s celebrate you today!",
+        "Be happy always ❤️",
+        "🌼",
+        "Be healthy always",
+        "🌻",
+        "🌹",
+        "🎂",
+        "Happy birthday 🎂",
+        "Shwe Yati Aung🎂",
+        "Hope it is a special day",
+        "Bloom like a flower🌻",
+        " Let’s celebrate you today!",
+        "Happy Day🌸",
+        "🌼",
+        "Be healthy always",
+        "🌻",
+        "🌹"
+      ],
+      "settings": {
+        "elementCount": 300,
+        "musicUrl": "hbd.mp3",
+        "neonColor": "#ff1493",
+        "textColor": "#ffffff"
       }
     }
   }
